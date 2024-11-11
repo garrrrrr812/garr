@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEBSITE SEDERHANA</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8e1a0; /* Color amarillo cálido */
+    }
+    .header {
+      background-color: #ffab40; /* Color naranja */
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+    }
+    .form-container {
+      background-color: #fff3e0; /* Color de fondo de los formularios */
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 50px;
+    }
+    .btn-custom {
+      background-color: #ffab40; /* Color naranja */
+      color: white;
+      width: 100%;
+    }
+    .modal-header {
+      background-color: #ffab40;
+      color: white;
+    }
+    .modal-footer .btn-custom {
+      width: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="header">
+    <h1>WEBSITE SEDERHANA FORMULIR</h1>
+    <p>formulir ini bersifat "privat"</p>
+  </header>
+
+  <!-- Contenido Principal -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="form-container">
+          <h2 class="text-center mb-4">ISI BIDANG PENTING INI</h2>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-username">username </label>
+              <input type="text" class="form-control" id="login-username" placeholder="isi username yg kosong ini" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">Sandi</label>
+              <input type="password" class="form-control" id="login-password" placeholder="isi sandi yg kosong ini" required>
+            </div>
+            <button type="submit" class="btn btn-custom mb-3">submit</button>
+            <div class="text-center">
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#registerModal">Registrasi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Registro -->
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Registrasi ke Sisfin forum</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="register-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="reg-nombre">Nama</label>
+              <input type="text" class="form-control" id="reg-nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-apellido">Nama terahkir</label>
+              <input type="text" class="form-control" id="reg-apellido" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-documento">Tipe dokumen anda</label>
+              <select class="form-control" id="reg-documento" required>
+                <option value="">selesaikan pilihan dokumen anda</option>
+                <option value="cedula-ciudadania">kartu tanda penduduk (ktp)</option>
+                <option value="cedula-extranjero">kartu keluarga (kk)</option>
+                <option value="pasaporte">Passaport</option>
+                <option value="permisos">DLL</option>
+                <option value="rut">RUT</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="reg-num-documento">Nomor hp anda</label>
+              <input type="text" class="form-control" id="reg-num-documento" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-direccion">wilayah</label>
+              <input type="text" class="form-control" id="reg-direccion" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-ciudad">Negara anda</label>
+              <select class="form-control" id="reg-ciudad" required>
+                <option value="">Indonesia</option>
+                <option value="bogota">MALAYSIA</option>
+                <option value="medellin">SINGAPORE</option>
+                <option value="cali">Cali</option>
+                <option value="santa-marta">JAPAN</option>
+                <option value="cartagena">RUSSIA</option>
+                <option value="barranquilla">AUSTRALIA</option>  
+                <option value="barranquilla">BRUNEI DARUSSALAM</option>  
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="reg-celular">Nomor kk anda</label>
+              <input type="text" class="form-control" id="reg-celular" required>
+            </div>
+            <div class="form-group">
+              <label for="reg-email">Gmail anda</label>
+              <input type="email" class="form-control" id="reg-email" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">BATAL</button>
+            <button type="submit" class="btn btn-custom"> continue</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Usuario Generado -->
+  <div class="modal fade" id="usernameModal" tabindex="-1" role="dialog" aria-labelledby="usernameModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="usernameModalLabel">Datos de Acceso</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="credentials-form">
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Usuario Asignado:</label>
+              <input type="text" class="form-control" id="generated-username" readonly>
+            </div>
+            <div class="form-group">
+              <label for="reg-password"> continue</label>
+              <input type="password" class="form-control" id="reg-password" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">BATAL</button>
+            <button type="submit" class="btn btn-custom">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts necesarios -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Manejar el envío del formulario de registro
+    $('#register-form').on('submit', function(event) {
+      event.preventDefault();
+      
+      // Validar que todos los campos estén completos
+      var isValid = true;
+      $('#register-form input, #register-form select').each(function() {
+        if ($(this).val() === '') {
+          isValid = false;
+          return false;
+        }
+      });
+      
+      if (!isValid) {
+        alert('Por favor, completa todos los campos.');
+        return;
+      }
+      
+      // Generar nombre de usuario
+      var nombre = $('#reg-nombre').val().trim().toLowerCase();
+      var apellido = $('#reg-apellido').val().trim().toLowerCase();
+      var username = (nombre.substring(0, 3) + apellido.substring(0, 3) + 'mu').toLowerCase();
+      
+      // Mostrar el nombre de usuario generado en el siguiente modal
+      $('#generated-username').val(username);
+      
+      // Cerrar el modal actual y abrir el siguiente
+      $('#registerModal').modal('hide');
+      $('#usernameModal').modal('show');
+    });
+
+    // Manejar el envío del formulario de credenciales
+    $('#credentials-form').on('submit', function(event) {
+      event.preventDefault();
+      
+      var password = $('#reg-password').val().trim();
+      
+      if (password === '') {
+        alert('Por favor, introduce una contraseña.');
+        return;
+      }
+      
+      alert('Registro exitoso. Ahora puedes iniciar sesión.');
+      
+      // Cerrar el modal y resetear formularios
+      $('#usernameModal').modal('hide');
+      $('#register-form')[0].reset();
+      $('#credentials-form')[0].reset();
+    });
+
+    // Opcional: Resetear formularios al cerrar modales
+    $('#registerModal, #usernameModal').on('hidden.bs.modal', function () {
+      $(this).find('form')[0].reset();
+    });
+  </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SisFin - Panel de Control</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8e1a0; /* Color amarillo cálido */
+        }
+        .navbar {
+            background-color: #ffab40; /* Color naranja */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .content-container {
+            padding: 20px;
+            background-color: #fff3e0; /* Color de fondo del contenido */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        .content-header {
+            margin-bottom: 20px;
+            color: #ffab40;
+        }
+    </style>
+</head>
+<body>
