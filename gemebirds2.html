@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Simple</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #87CEEB;
+        }
+        canvas {
+            background-color: #fff;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Game settings
+        const WIDTH = canvas.width;
+        const HEIGHT = canvas.height;
+        const GRAVITY = 0.5;
+        const PIPE_WIDTH = 70;
+        const PIPE_GAP = 150;
+        const BIRD_SIZE = 30;
+
+        // Bird settings
+        let birdX = 50;
+        let birdY = HEIGHT / 2;
+        let birdVelocity = 0;
+
+        // Pipe settings
+        let pipeX = WIDTH;
+        let pipeHeight = Math.floor(Math.random() * (HEIGHT / 2)) + 50;
+        const pipeVelocity = 2;
+
+        // Game state
+        let isGameOver = false;
+        let score = 0; // Score counter
+
+        // Draw bird
+        function drawBird() {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(birdX, birdY, BIRD_SIZE, BIRD_SIZE);
+        }
+
+        // Draw pipes
+        function drawPipes() {
+            ctx.fillStyle = "green";
+            // Pipe atas
+            ctx.fillRect(pipeX, 0, PIPE_WIDTH, pipeHeight);
+            // Pipe bawah
+            ctx.fillRect(pipeX, pipeHeight + PIPE_GAP, PIPE_WIDTH, HEIGHT - (pipeHeight + PIPE_GAP));
+        }
+
+        // Draw score
+        function drawScore() {
+            ctx.fillStyle = "black";
+            ctx.font = "20px Arial";
+            ctx.fillText("Score: " + score, 10, 30);
+        }
+
+        // Update game logic
+        function update() {
+            // Update bird position
+            birdVelocity += GRAVITY;
+            birdY += birdVelocity;
+
+            // Update pipe position
+            pipeX -= pipeVelocity;
+            if (pipeX < -PIPE_WIDTH) {
+                pipeX = WIDTH;
+                pipeHeight = Math.floor(Math.random() * (HEIGHT / 2)) + 50;
+                score++; // Increment score when the bird successfully passes a pipe
+            }
+
+            // Check for collisions
+            if (birdY > HEIGHT - BIRD_SIZE || birdY < 0 ||
+                (birdX + BIRD_SIZE > pipeX && birdX < pipeX + PIPE_WIDTH &&
+                (birdY < pipeHeight || birdY + BIRD_SIZE > pipeHeight + PIPE_GAP))) {
+                isGameOver = true;
+            }
+        }
+
+        // Game loop
+        function gameLoop() {
+            if (!isGameOver) {
+                ctx.clearRect(0, 0, WIDTH, HEIGHT);
+                drawBird();
+                drawPipes();
+                drawScore(); // Draw the score on the canvas
+                update();
+                requestAnimationFrame(gameLoop);
+            } else {
+                ctx.fillStyle = "red";
+                ctx.font = "40px Arial";
+                ctx.fillText("Game Over", WIDTH / 2 - 100, HEIGHT / 2);
+                ctx.font = "20px Arial";
+                ctx.fillText("Final Score: " + score, WIDTH / 2 - 50, HEIGHT / 2 + 40);
+            }
+        }
+
+        // Start game loop
+        gameLoop();
+
+        // Control bird with space bar
+        window.addEventListener("keydown", function(event) {
+            if (event.code === "Space" && !isGameOver) {
+                birdVelocity = -7; // Naikkan burung saat tombol spasi ditekan
+            } else if (event.code === "Space" && isGameOver) {
+                // Reset game
+                isGameOver = false;
+                birdY = HEIGHT / 2;
+                birdVelocity = 0;
+                pipeX = WIDTH;
+                pipeHeight = Math.floor(Math.random() * (HEIGHT / 2)) + 50;
+                score = 0; // Reset score
+                gameLoop();
+            }
+        });
+    </script>
+</body>
+</html>
